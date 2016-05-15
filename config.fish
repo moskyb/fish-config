@@ -1,4 +1,4 @@
-// Adapted from https://github.com/JavaNut13/dotfiles/blob/master/fish/config.fish
+# Adapted from https://github.com/JavaNut13/dotfiles/blob/master/fish/config.fish
 
 eval (thefuck --alias | tr '\n' ';')
 set PATH $HOME/.rbenv/bin $PATH
