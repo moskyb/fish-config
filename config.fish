@@ -4,6 +4,7 @@ eval (thefuck --alias | tr '\n' ';')
 set PATH $HOME/.rbenv/bin $PATH
 set PATH "$HOME/.rbenv/shims" $PATH
 rbenv rehash ^/dev/null
+
 function rbenv
     set -l command $argv[1]
     if test (count $argv) -gt 1
@@ -63,7 +64,7 @@ function fish_prompt
   if [ $status = 0 ]
     set_color green
     if git rev-parse 2> /dev/null
-      echo -n (git rev-parse --abbrev-ref HEAD)
+      echo -n (git rev-parse --abbrev-ref HEAD 2> /dev/null)
     else
       echo -n "^_^"
     end
