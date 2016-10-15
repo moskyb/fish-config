@@ -1,23 +1,8 @@
 # Adapted from https://github.com/JavaNut13/dotfiles/blob/master/fish/config.fish
 
+status --is-interactive; and . (rbenv init -|psub)
 eval (thefuck --alias | tr '\n' ';')
-set PATH $HOME/.rbenv/bin $PATH
-set PATH "$HOME/.rbenv/shims" $PATH
 rbenv rehash ^/dev/null
-
-function rbenv
-    set -l command $argv[1]
-    if test (count $argv) -gt 1
-        set argv $argv[2..-1]
-    end
-
-    switch "$command"
-        case rehash shell
-            eval (rbenv "sh-$command" $argv)
-        case '*'
-            command rbenv "$command" $argv
-    end
-end
 
 function vcf
   vim ~/.config/fish/config.fish
@@ -25,6 +10,10 @@ end
 
 function sagi
   sudo apt-get install -y $argv[1]
+end
+
+function bi
+  brew install $argv[1]
 end
 
 function gs
@@ -38,6 +27,26 @@ end
 
 function gaa
   git add -A
+end
+
+function be
+  bundle exec $argv[1]
+end
+
+function befs
+  bundle exec foreman start
+end
+
+function p
+  python3 $argv
+end
+
+function migrate
+  rake db:migrate; and rake db:migrate RAILS_ENV=test
+end
+
+function easy
+  rake $argv[1]; and rake $argv[1] RAILS_ENV=test
 end
 
 function ga
