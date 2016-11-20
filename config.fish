@@ -103,7 +103,3 @@ function mkcd
   mkdir -p $argv[1]
   cd $argv[1]
 end
-<<<<<<< HEAD
-=======
-
->>>>>>> f9021e2ab566303f29b9159a57c6ac2ed3bc260c
