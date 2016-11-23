@@ -4,16 +4,57 @@ status --is-interactive; and . (rbenv init -|psub)
 eval (thefuck --alias | tr '\n' ';')
 rbenv rehash ^/dev/null
 
+# Diddle with this file
 function vcf
   vim ~/.config/fish/config.fish
 end
 
-function sagi
-  sudo apt-get install -y $argv[1]
+#####################################################
+# Ruby-related stuffs
+#####################################################
+function migrate
+  rake db:migrate; and rake db:migrate RAILS_ENV=test
 end
 
-function bi
-  brew install $argv[1]
+function easy
+  rake $argv[1]; and rake $argv[1] RAILS_ENV=test
+end
+
+function fs
+  foreman start
+end
+
+function be
+  bundle exec $argv
+end
+function befs
+  bundle exec foreman start
+end
+#####################################################
+# Many and varied git shortcuts
+#####################################################
+function gcm
+  git commit -m $argv[1]
+end
+
+function gpo
+  git push origin
+end
+
+function gpf
+  git push --force
+end
+
+function grf
+  git reflog
+end
+
+function gri
+  git rebase -i $argv[1]
+end
+
+function gr
+  git rebase $argv
 end
 
 function gs
@@ -29,26 +70,6 @@ function gaa
   git add -A
 end
 
-function be
-  bundle exec $argv[1]
-end
-
-function befs
-  bundle exec foreman start
-end
-
-function p
-  python3 $argv
-end
-
-function migrate
-  rake db:migrate; and rake db:migrate RAILS_ENV=test
-end
-
-function easy
-  rake $argv[1]; and rake $argv[1] RAILS_ENV=test
-end
-
 function ga
   git add $argv[1]
 end
@@ -57,25 +78,32 @@ function gd
   git diff
 end
 
-function psf
-  ps aux | grep $argv[1]
+#####################################################
+# Misc
+#####################################################
+
+function nvm
+   bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
 
-function fs
-  foreman start
+function sagi
+  sudo apt-get install -y $argv[1]
 end
 
-function gcam
-  git commit -am $argv[1]
+function mkcd
+  mkdir -p $argv[1]
+  cd $argv[1]
 end
 
-function gcm
-  git commit -m $argv[1]
+function bi
+  brew install $argv[1]
 end
 
-function gpo
-  git push origin
+function p
+  python3 $argv
 end
+
+#######################################################
 
 function fish_prompt
   if [ $status = 0 ]
@@ -97,9 +125,4 @@ function fish_prompt
   echo -n ' ('
   echo -n (prompt_pwd)
   echo -n ') '
-end
-
-function mkcd
-  mkdir -p $argv[1]
-  cd $argv[1]
 end
