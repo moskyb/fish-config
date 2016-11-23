@@ -37,6 +37,10 @@ function gcm
   git commit -m $argv[1]
 end
 
+function gcam
+  git commit -am $argv
+end
+
 function gpo
   git push origin
 end
