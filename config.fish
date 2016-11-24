@@ -49,12 +49,20 @@ function gpf
   git push --force
 end
 
+function glo
+  git log --oneline
+end
+
 function grf
   git reflog
 end
 
 function gri
   git rebase -i $argv[1]
+end
+
+function grc
+  git rebase --continue
 end
 
 function gr
