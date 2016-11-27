@@ -22,7 +22,6 @@ function cfp
   cd $curr_dir
 end
   
-
 #####################################################
 # Ruby-related stuffs
 #####################################################
@@ -41,9 +40,23 @@ end
 function be
   bundle exec $argv
 end
+
 function befs
   bundle exec foreman start
 end
+
+function r
+  rails $argv
+end
+
+function rs
+  rails s
+end
+
+function rc
+  rails c
+end
+
 #####################################################
 # Many and varied git shortcuts
 #####################################################
@@ -129,6 +142,13 @@ function p
   python3 $argv
 end
 
+function e
+  ember $argv
+end
+
+function es
+  ember serve
+end
 #######################################################
 
 function fish_prompt
