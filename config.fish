@@ -1,13 +1,27 @@
 # Adapted from https://github.com/JavaNut13/dotfiles/blob/master/fish/config.fish
 
+#####################################################
+# Startup stuff
+#####################################################
 status --is-interactive; and . (rbenv init -|psub)
 eval (thefuck --alias | tr '\n' ';')
 rbenv rehash ^/dev/null
 
-# Diddle with this file
+#####################################################
+# Diddling with this file
+#####################################################
 function vcf
   vim ~/.config/fish/config.fish
 end
+
+function cfp
+  set curr_dir $PWD
+  cd ~/.config/fish
+  git commit -am $argv
+  git push origin
+  cd $curr_dir
+end
+  
 
 #####################################################
 # Ruby-related stuffs
