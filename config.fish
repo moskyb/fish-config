@@ -120,6 +120,15 @@ end
 function gco
   git checkout $argv
 end
+
+function gst
+  git stash $argv
+end
+
+function gstp
+  git stash pop
+end
+
 #####################################################
 # Misc
 #####################################################
