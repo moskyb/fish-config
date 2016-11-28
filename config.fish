@@ -100,7 +100,7 @@ function gs
   git status
 end
 
-function gitnuke
+function gnuke
   git stash
   git stash drop
 end
@@ -110,7 +110,7 @@ function gaa
 end
 
 function ga
-  git add $argv[1]
+  git add $argv
 end
 
 function gd
@@ -143,11 +143,12 @@ function p
 end
 
 function e
+  nvm use 5.7.0
   ember $argv
 end
 
 function es
-  ember serve
+  e serve
 end
 #######################################################
 
