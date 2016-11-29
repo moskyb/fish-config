@@ -77,7 +77,7 @@ function gpf
 end
 
 function glo
-  git log --oneline
+  git log --oneline $argv
 end
 
 function grf
