@@ -117,6 +117,10 @@ function gd
   git diff
 end
 
+function gb
+  git branch $argv
+end
+
 function gco
   git checkout $argv
 end
@@ -135,6 +139,10 @@ end
 
 function nvm
    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
+
+function psf
+  ps aux | grep $argv
 end
 
 function sagi
