@@ -21,7 +21,7 @@ function cfp
   git push origin
   cd $curr_dir
 end
-  
+
 #####################################################
 # Ruby-related stuffs
 #####################################################
@@ -50,11 +50,11 @@ function r
 end
 
 function rs
-  rails s
+  bundle exec rails s
 end
 
 function rc
-  rails c
+  bundle exec rails c
 end
 
 #####################################################
@@ -85,7 +85,7 @@ function grf
 end
 
 function gri
-  git rebase -i $argv[1]
+  git rebase -i HEAD~$argv[1]
 end
 
 function grc
@@ -158,6 +158,14 @@ function bi
   brew install $argv[1]
 end
 
+function bs
+  brew services $argv
+end
+
+function bsl
+  brew services list
+end
+
 function p
   python3 $argv
 end
@@ -170,6 +178,11 @@ end
 function es
   e serve
 end
+
+function rbs
+  ruby scratch.rb
+end
+
 #######################################################
 
 function fish_prompt
@@ -192,4 +205,36 @@ function fish_prompt
   echo -n ' ('
   echo -n (prompt_pwd)
   echo -n ') '
+end
+
+# Change the terminal title automatically based on current process / working-directory
+#
+# The main improvement over the default 'fish_title' behavior
+# is that I use the name of the current git repo, if any, as
+# opposed to the raw working-directory
+function fish_title
+    set -l command (echo $_)
+
+    if test $command = "fish"
+        # we are sitting at the fish prompt
+
+        if git rev-parse --git-dir > /dev/null ^ /dev/null
+            # we are inside a git directory, so use the name of the repo as the terminal title
+
+            set -l git_dir (git rev-parse --git-dir)
+            if test $git_dir = ".git"
+                # we are at the root of the git repo
+                echo (basename (pwd))
+            else
+                # we are at least one level deep in the git repo
+                echo (basename (dirname $git_dir))
+            end
+        else
+            # we are NOT inside a git repo, so just use the working-directory
+            echo (pwd)
+        end
+    else
+        # we are busy running some non-fish command, so use the command name
+        echo $command
+    end
 end
