@@ -77,7 +77,11 @@ function gpf
 end
 
 function glo
-  git log --oneline $argv
+  if count $argv > /dev/null
+    git log --oneline -n $argv[1]
+  else
+    git log --oneline -n 10
+  end
 end
 
 function grf
@@ -183,6 +187,13 @@ function rbs
   ruby scratch.rb
 end
 
+function quit
+	exit
+end
+
+function carny
+	cd "/Users/bmosky/Carnival/carnival-"$argv"/"
+end
 #######################################################
 
 function fish_prompt
