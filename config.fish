@@ -14,6 +14,10 @@ function vcf
   vim ~/.config/fish/config.fish
 end
 
+function acf
+  atom ~/.config/fish/config.fish
+end
+
 function cfp
   set curr_dir $PWD
   cd ~/.config/fish
@@ -25,8 +29,14 @@ end
 #####################################################
 # Ruby-related stuffs
 #####################################################
+
 function migrate
   rake db:migrate; and rake db:migrate RAILS_ENV=test
+end
+
+function check
+  bundle exec rspec
+  bundle exec rubocop
 end
 
 function easy
