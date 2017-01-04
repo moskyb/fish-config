@@ -14,16 +14,15 @@ function vcf
   vim ~/.config/fish/config.fish
 end
 
-<<<<<<< HEAD
 function acf
   atom ~/.config/fish/config.fish
-=======
+end
+
 function cpull
   set curr_dir $PWD
   git pull
   cd ~/.config/fish
   cd $curr_dir
->>>>>>> 69301169237e3f861e82b18905f073bd06c83466
 end
 
 function cfp
