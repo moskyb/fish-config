@@ -1,4 +1,4 @@
-# Adapted from https://github.com/JavaNut13/dotfiles/blob/master/fish/config.fish
+# Loosely adapted from https://github.com/JavaNut13/dotfiles/blob/master/fish/config.fish
 
 #####################################################
 # Startup stuff
@@ -86,7 +86,18 @@ function gcam
 end
 
 function gpo
-  git push origin
+  if read_confirm_run_specs
+    check
+    if test $status -eq 0
+      git push origin
+    else
+      if confirm_push_anyway
+        git push origin
+      end
+    end
+  else
+    git push origin
+  end
 end
 
 function gpf
@@ -146,12 +157,21 @@ function gco
   git checkout $argv
 end
 
+function gcom
+  git checkout master
+  git pull
+end
+
 function gst
   git stash $argv
 end
 
 function gstp
   git stash pop
+end
+
+function fk
+  git commit -am 'for kyle'
 end
 
 #####################################################
@@ -212,6 +232,40 @@ function carny
 	cd "/Users/bmosky/Carnival/carnival-"$argv"/"
 end
 #######################################################
+
+function confirm_push_anyway
+  while true
+    read -l -p push_anyway confirm
+
+    switch $confirm
+      case Y y
+        return 0
+      case '' N n
+        return 1
+    end
+  end
+end
+
+function push_anyway
+  echo 'Uh oh, looks like your specs failed, or you quit prematurely. Push anyway? [Y/N] '
+end
+
+function read_confirm_run_specs
+  while true
+    read -l -p run_specs confirm
+
+    switch $confirm
+      case Y y
+        return 0
+      case '' N n
+        return 1
+    end
+  end
+end
+
+function run_specs
+  echo 'Run specs before pushing? [Y/N] '
+end
 
 function fish_prompt
   if [ $status = 0 ]
