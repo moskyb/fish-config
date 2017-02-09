@@ -4,8 +4,10 @@
 # Startup stuff
 #####################################################
 status --is-interactive; and . (rbenv init -|psub)
-eval (thefuck --alias | tr '\n' ';')
 rbenv rehash ^/dev/null
+set -x GOPATH $HOME/go
+set -gx PATH $PATH $GOPATH/bin
+
 
 #####################################################
 # Diddling with this file
@@ -42,8 +44,13 @@ function migrate
 end
 
 function check
-  bundle exec rspec
-  bundle exec rubocop
+  if count $argv > /dev/null
+    bundle exec rspec $argv[1]
+    bundle exec rubocop $argv[1]
+  else
+    bundle exec rspec
+    bundle exec rubocop
+  end
 end
 
 function easy
@@ -67,7 +74,7 @@ function r
 end
 
 function rs
-  bundle exec rails s
+  bundle exec rails s $argv
 end
 
 function rc
@@ -229,7 +236,17 @@ function quit
 end
 
 function carny
-	cd "/Users/bmosky/Carnival/carnival-"$argv"/"
+	cd "/Users/moskyb/Carnival/carnival-"$argv"/"
+  if test -e ./.env.sample
+    if not test -e ./.env
+      echo "Looks like you don't have a .env file. You should probably have one."
+    end
+  end
+end
+
+function rabbit
+  docker run --rm -d --hostname my-rabbit  -p 15672:15672 -p 5672:5672  rabbitmq:3-management
+  echo "RabbitMQ Started Successfully"
 end
 #######################################################
 
