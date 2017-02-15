@@ -93,17 +93,21 @@ function gcam
 end
 
 function gpo
-  if read_confirm_run_specs
-    check
-    if test $status -eq 0
-      git push origin
-    else
-      if confirm_push_anyway
-        git push origin
-      end
-    end
-  else
+  if not test -d ./spec/
     git push origin
+  else
+    if read_confirm_run_specs
+      check
+      if test $status -eq 0
+        git push origin
+      else
+        if confirm_push_anyway
+          git push origin
+        end
+      end
+    else
+      git push origin
+    end
   end
 end
 
@@ -179,6 +183,10 @@ end
 
 function fk
   git commit -am 'for kyle'
+end
+
+function glom
+  fk; and gri 2
 end
 
 #####################################################
