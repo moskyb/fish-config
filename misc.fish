@@ -1,6 +1,6 @@
 
 function nvm
-   bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
 
 function psf

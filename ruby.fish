@@ -39,3 +39,7 @@ end
 function rc
   bundle exec rails c
 end
+
+function cogem
+  git checkout Gemfile Gemfile.lock
+end
