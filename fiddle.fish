@@ -3,7 +3,7 @@ function vcf
 end
 
 function acf
-  atom ~/.config/fish/config.fish
+  atom ~/.config/fish
 end
 
 function cpull
