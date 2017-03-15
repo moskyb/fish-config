@@ -17,6 +17,9 @@ source ~/.config/fish/git.fish
 # Misc
 source ~/.config/fish/misc.fish
 
+# Private work stuff
+source ~/.config/fish/carny.fish
+
 function fish_prompt
   if [ $status = 0 ]
     set_color green

@@ -87,6 +87,11 @@ function gcom
   git pull
 end
 
+function gnb
+  gcom
+  gco -b $argv
+end
+
 function gst
   git stash $argv
 end

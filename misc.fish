@@ -49,16 +49,7 @@ function quit
 	exit
 end
 
-function carny
-	cd "/Users/moskyb/Carnival/carnival-"$argv"/"
-  if test -e ./.env.sample
-    if not test -e ./.env
-      echo "Looks like you don't have a .env file. You should probably have one."
-    end
-  end
-end
-
 function rabbit
   docker run --rm -d --hostname my-rabbit  -p 15672:15672 -p 5672:5672  rabbitmq:3-management
-  echo "RabbitMQ Started Successfully"
+  echo "RabbitMQ Started Successfully, maybe. Read something, you caveman"
 end
