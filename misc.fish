@@ -41,10 +41,6 @@ function es
   e serve
 end
 
-function rbs
-  ruby scratch.rb
-end
-
 function quit
 	exit
 end

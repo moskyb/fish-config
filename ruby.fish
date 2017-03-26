@@ -43,3 +43,7 @@ end
 function cogem
   git checkout Gemfile Gemfile.lock
 end
+
+function rbs
+  ruby scratch.rb
+end
