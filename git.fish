@@ -54,7 +54,12 @@ function gr
 end
 
 function gs
+  # Fuck me if I ever install GhostScript, amirite?
   git status
+end
+
+function gpu
+  git pull $argv
 end
 
 function gnuke
