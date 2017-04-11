@@ -6,6 +6,14 @@ function gcam
   git commit -am $argv
 end
 
+function peek
+  if count $argv > /dev/null
+    git show HEAD~$argv[1]
+  else
+    git show HEAD
+  end
+end
+
 function gpo
   if not test -d ./spec/
     git push origin
