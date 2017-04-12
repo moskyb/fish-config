@@ -18,7 +18,9 @@ source ~/.config/fish/git.fish
 source ~/.config/fish/misc.fish
 
 # Private work stuff
-source ~/.config/fish/carny.fish
+if test -e ~/.config/fish/carny.fish
+  source ~/.config/fish/carny.fish
+end
 
 function fish_prompt
   if [ $status = 0 ]
