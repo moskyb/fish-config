@@ -53,6 +53,11 @@ function gri
   git rebase -i HEAD~$argv[1]
 end
 
+# git clean - remove all merged branches
+function gcl
+  git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
+end
+
 function grc
   git rebase --continue
 end
