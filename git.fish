@@ -88,7 +88,11 @@ function gd
 end
 
 function gb
-  git branch $argv
+  if count $argv > /dev/null
+    git branch $argv
+  else
+    git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:cyan)%(refname:short)%(color:reset) | %(committerdate:relative)%(color:reset) | %(subject)' | column -s '|' -t;
+  end
 end
 
 function gco
