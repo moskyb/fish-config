@@ -53,6 +53,14 @@ function gri
   git rebase -i HEAD~$argv[1]
 end
 
+# Pull master, then rebase against it
+function grm
+  set curr_branch (git rev-parse --abbrev-ref HEAD)
+  gcom
+  gco $curr_branch
+  git rebase master
+end
+
 # git clean - remove all merged branches
 function gcl
   git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
@@ -89,7 +97,7 @@ function ga
 end
 
 function gd
-  git diff
+  git diff $argv
 end
 
 function gb
