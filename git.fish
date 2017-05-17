@@ -2,8 +2,15 @@ function gcm
   git commit -m $argv[1]
 end
 
+# git commit all message
 function gcam
   git commit -am $argv
+end
+
+# git commit really all all message
+function gcaam
+  gaa
+  git commit -m $argv
 end
 
 function peek
@@ -12,6 +19,18 @@ function peek
   else
     git show HEAD
   end
+end
+
+# use cURL magic to get the PR for your current branch
+# Requires that you set your github org, username and Personal Access Token as $gh_uname, $gh_org and $gh_pat respectively
+function gpr
+  echo "Just a sec..."
+  set repo (basename (git rev-parse --show-toplevel))
+  set branch (git rev-parse --abbrev-ref HEAD)
+  curl -s -u "$gh_uname:$gh_pat" "https://api.github.com/repos/$gh_org/$repo/pulls" > tmp.json
+  set link (cat tmp.json | jq -r ".[] | select(.head.ref | startswith(\"$branch\")).html_url")
+  open $link
+  rm tmp.json
 end
 
 function gpo
