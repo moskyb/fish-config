@@ -1,8 +1,9 @@
-
+# Use nvm because it by default doesn't work with fish
 function nvm
   bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
 
+# Find a running process
 function psf
   ps aux | grep $argv
 end
@@ -28,10 +29,12 @@ function bsl
   brew services list
 end
 
+# Typing is hard ok
 function p
   python3 $argv
 end
 
+# Switch to node 5.7.0, which I use a lot, then do something ember-related
 function e
   nvm use 5.7.0
   ember $argv
@@ -41,11 +44,7 @@ function es
   e serve
 end
 
+# 'quit' is significantly easier to type than 'exit'. I am a very lazy person
 function quit
 	exit
-end
-
-function rabbit
-  docker run --rm -d --hostname my-rabbit  -p 15672:15672 -p 5672:5672  rabbitmq:3-management
-  echo "RabbitMQ Started Successfully, maybe. Read something, you caveman"
 end

@@ -1,11 +1,14 @@
+# Open config in vim
 function vcf
   vim ~/.config/fish/config.fish
 end
 
+# Open config in atom
 function acf
   atom ~/.config/fish
 end
 
+# Pull latest config from github
 function cpull
   set curr_dir $PWD
   git pull
@@ -13,6 +16,7 @@ function cpull
   cd $curr_dir
 end
 
+# Push latest config to github
 function cfp
   set curr_dir $PWD
   cd ~/.config/fish
