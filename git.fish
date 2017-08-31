@@ -92,7 +92,7 @@ function gcl
 end
 
 function grc
-  git rebase --continue
+  gaa ;and git rebase --continue
 end
 
 function gr
