@@ -5,7 +5,7 @@ end
 
 # Find a running process
 function psf
-  ps aux | grep $argv
+  pgrep $argv
 end
 
 function sagi
@@ -23,6 +23,14 @@ end
 
 function bs
   brew services $argv
+end
+
+function code
+  code-insiders $argv
+end
+
+function et
+  e t --reporter dot $argv
 end
 
 function bsl

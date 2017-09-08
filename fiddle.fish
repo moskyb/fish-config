@@ -6,7 +6,12 @@ end
 # Open config in atom
 function acf
   atom ~/.config/fish
-end
+end 
+
+# Open config in atom
+function ccf
+  code ~/.config/fish
+end 
 
 # Pull latest config from github
 function cpull
