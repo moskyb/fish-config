@@ -8,6 +8,11 @@ function acf
   atom ~/.config/fish
 end 
 
+# Reload config
+function recon
+  source ~/.config/fish/config.fish
+end
+
 # Open config in atom
 function ccf
   code ~/.config/fish

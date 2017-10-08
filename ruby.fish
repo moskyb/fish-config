@@ -14,6 +14,10 @@ function check
   end
 end
 
+function cop
+  be rubocop $argv
+end
+
 # Do something in both development and test rails environtments
 function easy
   rake $argv[1]; and rake $argv[1] RAILS_ENV=test
