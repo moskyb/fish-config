@@ -3,6 +3,10 @@ function vcf
   vim ~/.config/fish/config.fish
 end
 
+function conf
+  cd ~/.config/fish
+end
+
 # Open config in atom
 function acf
   atom ~/.config/fish
