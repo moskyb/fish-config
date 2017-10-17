@@ -56,3 +56,11 @@ end
 function quit
 	exit
 end
+
+function gcat
+  ./gradlew clean connectedAndroidTest
+end
+
+function gt
+  ./gradlew clean test
+end
