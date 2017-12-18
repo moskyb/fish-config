@@ -8,6 +8,18 @@ function psf
   pgrep $argv
 end
 
+function dit
+  docker exec -it $argv
+end
+
+function dr -d "docker run"
+  docker run $argv
+end
+
+function db -d "docker build"
+  docker build $argv
+end
+
 function sagi
   sudo apt-get install -y $argv[1]
 end
