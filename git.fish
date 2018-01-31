@@ -1,27 +1,32 @@
-# git commit message
-function gcm
-  git commit -m $argv[1]
-end
+alias gcm 'git commit -m' # git commit message
+alias gcam 'git commit -am' # git commit all message
+alias gcaam 'gaa ;and git commit -m' # git commit really all all message
+alias gpf 'git push --force'
+alias gco 'git checkout'
+alias grf 'git reflog'
+alias gcl 'git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d' # git clean - remove all merged branches
+alias grc 'gaa ;and git rebase --continue'
+alias gr 'git rebase'
+alias gpu 'git pull'
+alias gaa 'git add -A' # git add all
+alias ga 'git add' # git add
+alias gd 'git diff'
+alias gst 'git stash'
+alias gstp 'git stash pop'
+alias peek 'git show HEAD~$argv' # Take a look at the latest commit, or the nth commit for some numeric argument n
+alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
+alias gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
+alias gnb 'gcom ;and gco -b' # git new branch
+alias gs 'git status' # Fuck me if I ever install GhostScript, amirite?
 
-# git commit all message
-function gcam
-  git commit -am $argv
-end
+# Handy for when you're Douglas Crockford
+# The worst commit ever: https://github.com/douglascrockford/JSON-js/commit/40f3377a631eaedeec877379f9cb338046cac0e0
+alias fk 'git commit -am "for kyle"'
 
-# git commit really all all message
-function gcaam
-  gaa
-  git commit -m $argv
-end
-
-# Take a look at the latest commit, or the nth commit for some numeric argument n
-function peek
-  if count $argv > /dev/null
-    git show HEAD~$argv[1]
-  else
-    git show HEAD
-  end
-end
+# Handy for amending your latest commit onto the second-most recent one.
+# Will start a rebase with your current work in a new commit with the message
+# 'for kyle', which you can then easily squash onto the second-most recent commit
+alias glom 'fk; and gri 2'
 
 # use cURL magic to get the PR for your current branch
 # Requires that you set your github org, username and Personal Access Token as $gh_uname, $gh_org and $gh_pat respectively
@@ -35,8 +40,11 @@ function gpr
   rm tmp.json
 end
 
-# git push origin. If you're working something with a ./spec/ directory, it'll
-# offer to run your specs for you
+function gri
+  git rebase -i HEAD~$argv[1]
+end
+
+# git push origin. If you're working something with a ./spec/ directory, it'll offer to run your specs for you
 function gpo
   if not test -d ./spec/
     git push origin
@@ -56,10 +64,6 @@ function gpo
   end
 end
 
-function gpf
-  git push --force
-end
-
 # git log oneline
 function glo
   if count $argv > /dev/null
@@ -67,15 +71,6 @@ function glo
   else
     git log --oneline -n 10
   end
-end
-
-function grf
-  git reflog
-end
-
-# git rebase interactive
-function gri
-  git rebase -i HEAD~$argv[1]
 end
 
 # Pull master, then rebase against it
@@ -86,47 +81,6 @@ function grm
   git rebase master
 end
 
-# git clean - remove all merged branches
-function gcl
-  git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
-end
-
-function grc
-  gaa ;and git rebase --continue
-end
-
-function gr
-  git rebase $argv
-end
-
-function gs
-  # Fuck me if I ever install GhostScript, amirite?
-  git status
-end
-
-function gpu
-  git pull $argv
-end
-
-# Get rid of any uncommitted changes, even if they're staged
-function gnuke
-  git stash
-  git stash drop
-end
-
-# git add all
-function gaa
-  git add -A
-end
-
-# git add
-function ga
-  git add $argv
-end
-
-function gd
-  git diff $argv
-end
 
 # With no args, show available branches in a nice and easy-to-read way - thanks @aupajo!
 # With args, it's just git branch
@@ -136,44 +90,6 @@ function gb
   else
     git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:cyan)%(refname:short)%(color:reset) | %(committerdate:relative)%(color:reset) | %(subject)' | column -s '|' -t;
   end
-end
-
-function gco
-  git checkout $argv
-end
-
-# Checkout master and pull the latest version
-function gcom
-  git checkout master
-  git pull
-end
-
-# git new branch
-# Create a new branch against the latest master
-function gnb
-  gcom
-  gco -b $argv
-end
-
-function gst
-  git stash $argv
-end
-
-function gstp
-  git stash pop
-end
-
-# Handy for when you're Douglas Crockford
-# The worst commit ever: https://github.com/douglascrockford/JSON-js/commit/40f3377a631eaedeec877379f9cb338046cac0e0
-function fk
-  git commit -am 'for kyle'
-end
-
-# Handy for amending your latest commit onto the second-most recent one.
-# Will start a rebase with your current work in a new commit with the message
-# 'for kyle', which you can then easily squash onto the second-most recent commit
-function glom
-  fk; and gri 2
 end
 
 # Used in the `gpo` command

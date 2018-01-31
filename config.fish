@@ -4,18 +4,10 @@ rbenv rehash ^/dev/null
 set -x GOPATH $HOME/go
 set -gx PATH $PATH $GOPATH/bin
 
-
-# Diddling with this file
-source ~/.config/fish/fiddle.fish
-
-# Ruby-related stuffs
-source ~/.config/fish/ruby.fish
-
-# Many and varied git shortcuts
-source ~/.config/fish/git.fish
-
-# Misc
-source ~/.config/fish/misc.fish
+source ~/.config/fish/fiddle.fish # Diddling with this file
+source ~/.config/fish/ruby.fish # Ruby-related stuffs
+source ~/.config/fish/git.fish # Many and varied git shortcuts
+source ~/.config/fish/misc.fish # Misc
 
 # Private work stuff
 if test -e ~/.config/carny-fish/carny.fish

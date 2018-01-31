@@ -1,26 +1,8 @@
-# Open config in vim
-function vcf
-  vim ~/.config/fish/config.fish
-end
-
-function conf
-  cd ~/.config/fish
-end
-
-# Open config in atom
-function acf
-  atom ~/.config/fish
-end 
-
-# Reload config
-function recon
-  source ~/.config/fish/config.fish
-end
-
-# Open config in atom
-function ccf
-  code ~/.config/fish
-end 
+alias vcf 'vim ~/.config/fish/config.fish' # Open config in vim
+alias acf 'atom ~/.config/fish' # Open config in atom
+alias recon 'source ~/.config/fish/config.fish' # Reload config
+alias ccf 'code ~/.config/fish' # Open config in atom
+alias conf 'cd ~/.config/fish'
 
 # Pull latest config from github
 function cpull
