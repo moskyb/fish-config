@@ -1,10 +1,10 @@
 alias migrate 'rake db:migrate; and rake db:migrate RAILS_ENV=test'
-alias cop 'be rubocop $argv'
+alias cop 'be rubocop'
 alias easy 'rake $argv[1]; and rake $argv[1] RAILS_ENV=test' # Do something in both development and test rails environtments
 alias fs 'foreman start'
-alias be 'bundle exec $argv'
-alias r 'rails $argv'
-alias rs 'bundle exec rails s $argv'
+alias be 'bundle exec'
+alias r 'rails'
+alias rs 'bundle exec rails s'
 alias rc 'bundle exec rails c'
 alias cogem 'git checkout Gemfile Gemfile.lock' # Handy for when you're using specific gems locally that you don't want to push
 alias rbs 'ruby scratch.rb'
