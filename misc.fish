@@ -15,3 +15,13 @@ alias es 'e serve'
 alias quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a very lazy person
 alias gcat './gradlew clean connectedAndroidTest'
 alias gt './gradlew clean test'
+
+function mkcd
+  mkdir -p $argv[1]
+  cd $argv[1]
+end
+
+# Kill all processes listening on the given port
+function kp
+  lsof -i ":$argv[1]" | grep LISTEN | awk '{print $2}' | xargs kill
+end
