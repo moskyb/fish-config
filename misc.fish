@@ -6,7 +6,6 @@ alias db 'docker build'
 alias sagi 'sudo apt-get install -y'
 alias bi 'brew install'
 alias bs 'brew services'
-alias code 'code-insiders'
 alias et 'e t --reporter dot'
 alias bsl 'brew services list'
 alias p 'python3' # Typing is hard ok
@@ -15,6 +14,8 @@ alias es 'e serve'
 alias quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a very lazy person
 alias gcat './gradlew clean connectedAndroidTest'
 alias gt './gradlew clean test'
+alias mdg 'mix deps.get'
+alias renv 'cp .env.sample .env'
 
 function mkcd
   mkdir -p $argv[1]
