@@ -16,6 +16,7 @@ alias gcat './gradlew clean connectedAndroidTest'
 alias gt './gradlew clean test'
 alias mdg 'mix deps.get'
 alias renv 'cp .env.sample .env'
+alias sd 'serverless deploy'
 
 function mkcd
   mkdir -p $argv[1]
