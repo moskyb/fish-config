@@ -36,10 +36,9 @@ function gpr
   echo "Just a sec..."
   set repo (basename (git rev-parse --show-toplevel))
   set branch (git rev-parse --abbrev-ref HEAD)
-  curl -s -u "$gh_uname:$gh_pat" "https://api.github.com/repos/$gh_org/$repo/pulls" > tmp.json
-  set link (cat tmp.json | jq -r ".[] | select(.head.ref | startswith(\"$branch\")).html_url")
-  open $link
-  rm tmp.json
+  curl -s -u "$gh_uname:$gh_pat" "https://api.github.com/repos/$gh_org/$repo/pulls" | \
+    jq -r ".[] | select(.head.ref | startswith(\"$branch\")).html_url" | \
+    xargs open
 end
 
 function gri
