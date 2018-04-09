@@ -5,6 +5,7 @@ alias gpf 'git push --force'
 alias gco 'git checkout'
 alias grf 'git reflog'
 alias gcl 'git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d' # git clean - remove all merged branches
+alias gclcl 'git branch | egrep -v "(^\*|master|dev)" | xargs git branch -d' # git clean - remove all branches other than master, dev, and the one we're currently on
 alias grc 'gaa ;and git rebase --continue'
 alias gr 'git rebase'
 alias gpu 'git pull'
@@ -15,7 +16,8 @@ alias gst 'git stash'
 alias gstp 'git stash pop'
 alias peek 'git show HEAD~$argv' # Take a look at the latest commit, or the nth commit for some numeric argument n
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
-alias gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
+alias gbb 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' # Git Base Branch - get default branch
+alias gcom 'git checkout (gbb) ;and git pull' # Checkout master and pull the latest version
 alias gnb 'gcom ;and gco -b' # git new branch
 alias gs 'git status' # Fuck me if I ever install GhostScript, amirite?
 
@@ -23,7 +25,7 @@ alias gs 'git status' # Fuck me if I ever install GhostScript, amirite?
 # The worst commit ever: https://github.com/douglascrockford/JSON-js/commit/40f3377a631eaedeec877379f9cb338046cac0e0
 alias fk 'git commit -am "for kyle"'
 
-# Handy for amending your latest commit onto the second-most recent one.
+# Handy for amending your current work onto the most recent commit.
 # Will start a rebase with your current work in a new commit with the message
 # 'for kyle', which you can then easily squash onto the second-most recent commit
 alias glom 'fk; and gri 2'
