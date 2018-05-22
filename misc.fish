@@ -9,7 +9,7 @@ alias bs 'brew services'
 alias et 'e t --reporter dot'
 alias bsl 'brew services list'
 alias p 'python3' # Typing is hard ok
-alias e 'nvm use 5.7.0 ;and ember' # Switch to node 5.7.0, which I use a lot, then do something ember-related
+alias e 'nvm use 8.11.1 ;and ember' # Switch to node 8.11.1, which I use a lot, then do something ember-related
 alias es 'e serve'
 alias quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a very lazy person
 alias gcat './gradlew clean connectedAndroidTest'

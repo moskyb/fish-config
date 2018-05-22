@@ -5,7 +5,7 @@ alias gpf 'git push --force'
 alias gco 'git checkout'
 alias grf 'git reflog'
 alias gcl 'git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d' # git clean - remove all merged branches
-alias gclcl 'git branch | egrep -v "(^\*|master|dev)" | xargs git branch -d' # git clean - remove all branches other than master, dev, and the one we're currently on
+alias gclcl 'git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D' # git really clean - remove all branches other than master, dev, and the one we're currently on
 alias grc 'gaa ;and git rebase --continue'
 alias gr 'git rebase'
 alias gpu 'git pull'
@@ -14,7 +14,6 @@ alias ga 'git add' # git add
 alias gd 'git diff'
 alias gst 'git stash'
 alias gstp 'git stash pop'
-alias peek 'git show HEAD~$argv' # Take a look at the latest commit, or the nth commit for some numeric argument n
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
 alias gbb 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' # Git Base Branch - get default branch
 alias gcom 'git checkout (gbb) ;and git pull' # Checkout master and pull the latest version
@@ -29,6 +28,11 @@ alias fk 'git commit -am "for kyle"'
 # Will start a rebase with your current work in a new commit with the message
 # 'for kyle', which you can then easily squash onto the second-most recent commit
 alias glom 'fk; and gri 2'
+
+# Take a look at the latest commit, or the nth commit for some numeric argument n
+function peek 
+  git show HEAD~$argv
+end
 
 # use cURL magic to get the PR for your current branch
 # Requires that you set your github org, username and Personal Access Token as $gh_uname, $gh_org and $gh_pat respectively
