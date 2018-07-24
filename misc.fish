@@ -15,7 +15,7 @@ alias quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a v
 alias gcat './gradlew clean connectedAndroidTest'
 alias gt './gradlew clean test'
 alias mdg 'mix deps.get'
-alias renv 'cp .env.sample .env'
+alias renv 'cp .env.sample.sb .env'
 alias sd 'serverless deploy'
 
 function mkcd
