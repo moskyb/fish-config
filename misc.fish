@@ -1,8 +1,15 @@
 alias nvm 'bass source ~/.nvm/nvm.sh --no-use ";" nvm' # Use nvm because it by default doesn't work with fish
 alias psf 'pgrep' # Find a running process
 alias dit 'docker exec -it'
+alias doco 'docker-compose -f $SAILTHRU_HOME/devtools/containers/docker-compose.yml'
+alias dcu 'doco up'
+alias dcd 'doco down'
+alias dps 'docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dex "doco run --rm --entrypoint '$argv[2]' -e COLUMNS=$COLUMNS -e LINES=$LINES -e TERM=$TERM" $argv[1]
 alias dr 'docker run'
 alias db 'docker build'
+alias mdg 'mix deps.get'
+alias mt 'mix test --no-start'
 alias sagi 'sudo apt-get install -y'
 alias bi 'brew install'
 alias bs 'brew services'
