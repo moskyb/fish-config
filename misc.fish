@@ -5,7 +5,7 @@ alias doco 'docker-compose -f $SAILTHRU_HOME/devtools/containers/docker-compose.
 alias dcu 'doco up'
 alias dcd 'doco down'
 alias dps 'docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
-alias dex "doco run --rm --entrypoint '$argv[2]' -e COLUMNS=$COLUMNS -e LINES=$LINES -e TERM=$TERM" $argv[1]
+alias dex "doco run --rm --entrypoint '$argv[2..-1]' -e COLUMNS=$COLUMNS -e LINES=$LINES -e TERM=$TERM" $argv[1]
 alias dr 'docker run'
 alias db 'docker build'
 alias mdg 'mix deps.get'
