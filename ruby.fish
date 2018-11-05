@@ -5,7 +5,7 @@ alias fs 'foreman start'
 alias be 'bundle exec'
 alias r 'rails'
 alias rs 'bundle exec rails s'
-alias rc 'bundle exec rails c'
+alias rc 'dex (dis) bundle exec rails c'
 alias cogem 'git checkout Gemfile Gemfile.lock' # Handy for when you're using specific gems locally that you don't want to push
 alias rbs 'ruby scratch.rb'
 
@@ -13,10 +13,10 @@ alias rbs 'ruby scratch.rb'
 # I guess switching to a tab that's running a guard session is too much like hard work for me
 function check
   if count $argv > /dev/null
-    bundle exec rspec $argv[1]
+    dex (dis) bundle exec rspec $argv[1]
     bundle exec rubocop $argv[1]
   else
-    bundle exec rspec
+    dex (dis) bundle exec rspec
     bundle exec rubocop
   end
 end

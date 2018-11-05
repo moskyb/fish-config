@@ -1,15 +1,16 @@
 alias nvm 'bass source ~/.nvm/nvm.sh --no-use ";" nvm' # Use nvm because it by default doesn't work with fish
 alias psf 'pgrep' # Find a running process
 alias dit 'docker exec -it'
-alias doco 'docker-compose -f $SAILTHRU_HOME/devtools/containers/docker-compose.yml'
-alias dcu 'doco up'
+alias ddu 'doco up -d'
 alias dcd 'doco down'
+alias dlf 'docker logs -tf --since 5m'
 alias dps 'docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
-alias dex "doco run --rm --entrypoint '$argv[2..-1]' -e COLUMNS=$COLUMNS -e LINES=$LINES -e TERM=$TERM" $argv[1]
 alias dr 'docker run'
 alias db 'docker build'
 alias mdg 'mix deps.get'
-alias mt 'mix test --no-start'
+alias mt 'mix test'
+alias mf 'mix format'
+alias ism 'iex -S mix'
 alias sagi 'sudo apt-get install -y'
 alias bi 'brew install'
 alias bs 'brew services'
@@ -22,7 +23,7 @@ alias quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a v
 alias gcat './gradlew clean connectedAndroidTest'
 alias gt './gradlew clean test'
 alias mdg 'mix deps.get'
-alias renv 'cp .env.sample.sb .env'
+alias renv 'cp .env.sandbox .env'
 alias sd 'serverless deploy'
 
 function mkcd
