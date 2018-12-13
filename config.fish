@@ -1,8 +1,6 @@
 # Startup stuff
 status --is-interactive; and . (rbenv init -|psub)
 rbenv rehash ^/dev/null
-set -x GOPATH $HOME/go
-set -gx PATH $PATH $GOPATH/bin
 
 source ~/.config/fish/fiddle.fish # Diddling with this file
 source ~/.config/fish/ruby.fish # Ruby-related stuffs

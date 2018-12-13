@@ -1,30 +1,35 @@
 alias nvm 'bass source ~/.nvm/nvm.sh --no-use ";" nvm' # Use nvm because it by default doesn't work with fish
-alias psf 'pgrep' # Find a running process
-alias dit 'docker exec -it'
-alias ddu 'doco up -d'
-alias dcd 'doco down'
-alias dlf 'docker logs -tf --since 5m'
+alias dlf 'docker logs -tf --tail 50'
 alias dps 'docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
-alias dr 'docker run'
-alias db 'docker build'
-alias mdg 'mix deps.get'
-alias mt 'mix test'
-alias mf 'mix format'
-alias ism 'iex -S mix'
-alias sagi 'sudo apt-get install -y'
-alias bi 'brew install'
-alias bs 'brew services'
-alias et 'e t --reporter dot'
-alias bsl 'brew services list'
-alias p 'python3' # Typing is hard ok
 alias e 'nvm use 8.11.1 ;and ember' # Switch to node 8.11.1, which I use a lot, then do something ember-related
-alias es 'e serve'
-alias quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a very lazy person
-alias gcat './gradlew clean connectedAndroidTest'
-alias gt './gradlew clean test'
-alias mdg 'mix deps.get'
-alias renv 'cp .env.sandbox .env'
-alias sd 'serverless deploy'
+
+abbr psf 'pgrep' # Find a running process
+abbr dit 'docker exec -it'
+abbr ddu 'doco up -d'
+abbr dcd 'doco down'
+abbr dr 'docker run'
+abbr db 'docker build'
+abbr mdg 'mix deps.get'
+abbr mt 'mix test'
+abbr mf 'mix format'
+abbr ism 'iex -S mix'
+abbr sagi 'sudo apt-get install -y'
+abbr bi 'brew install'
+abbr bs 'brew services'
+abbr et 'e t --reporter dot'
+abbr bsl 'brew services list'
+abbr p 'python3' # Typing is hard ok
+abbr es 'e serve'
+abbr quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a very lazy person
+abbr gcat './gradlew clean connectedAndroidTest'
+abbr gt './gradlew clean test'
+abbr mdg 'mix deps.get'
+abbr renv 'cp .env.sandbox .env'
+abbr sd 'serverless deploy'
+
+function volrm
+  docker volume ls | grep $argv[1] | awk '{print $2}' | xargs docker volume rm
+end
 
 function mkcd
   mkdir -p $argv[1]
