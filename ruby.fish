@@ -3,7 +3,6 @@ abbr fs 'foreman start'
 abbr be 'bundle exec'
 abbr r 'rails'
 abbr rs 'bundle exec rails s'
-abbr rc 'dex (dis) bundle exec rails c'
 abbr cogem 'git checkout Gemfile Gemfile.lock' # Handy for when you're using specific gems locally that you don't want to push
 abbr rbs 'ruby scratch.rb'
 

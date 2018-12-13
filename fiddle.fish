@@ -1,7 +1,4 @@
-abbr vcf 'vim ~/.config/fish/config.fish' # Open config in vim
-abbr acf 'atom ~/.config/fish' # Open config in atom
 alias recon 'set -e fish_user_abbreviations ;and source ~/.config/fish/config.fish' # Reload config
-abbr ccf 'code ~/.config/fish' # Open config in atom
 abbr conf 'cd ~/.config/fish'
 
 # Pull latest config from github

@@ -8,24 +8,13 @@ abbr dit 'docker exec -it'
 abbr ddu 'doco up -d'
 abbr dcd 'doco down'
 abbr dr 'docker run'
-abbr db 'docker build'
 abbr mdg 'mix deps.get'
 abbr mt 'mix test'
 abbr mf 'mix format'
 abbr ism 'iex -S mix'
-abbr sagi 'sudo apt-get install -y'
-abbr bi 'brew install'
-abbr bs 'brew services'
-abbr et 'e t --reporter dot'
-abbr bsl 'brew services list'
-abbr p 'python3' # Typing is hard ok
 abbr es 'e serve'
-abbr quit 'exit' # 'quit' is significantly easier to type than 'exit'. I am a very lazy person
-abbr gcat './gradlew clean connectedAndroidTest'
-abbr gt './gradlew clean test'
 abbr mdg 'mix deps.get'
 abbr renv 'cp .env.sandbox .env'
-abbr sd 'serverless deploy'
 
 function volrm
   docker volume ls | grep $argv[1] | awk '{print $2}' | xargs docker volume rm
