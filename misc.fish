@@ -4,21 +4,14 @@ alias dps 'docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}
 alias e 'nvm use 8.11.1 ;and ember' # Switch to node 8.11.1, which I use a lot, then do something ember-related
 
 abbr psf 'pgrep' # Find a running process
-abbr dit 'docker exec -it'
-abbr ddu 'doco up -d'
-abbr dcd 'doco down'
-abbr dr 'docker run'
 abbr mdg 'mix deps.get'
 abbr mt 'mix test'
 abbr mf 'mix format'
 abbr ism 'iex -S mix'
 abbr es 'e serve'
 abbr mdg 'mix deps.get'
+abbr rmr 'rm -rf '
 abbr renv 'cp .env.sandbox .env'
-
-function volrm
-  docker volume ls | grep $argv[1] | awk '{print $2}' | xargs docker volume rm
-end
 
 function mkcd
   mkdir -p $argv[1]

@@ -5,6 +5,7 @@ rbenv rehash ^/dev/null
 source ~/.config/fish/fiddle.fish # Diddling with this file
 source ~/.config/fish/ruby.fish # Ruby-related stuffs
 source ~/.config/fish/git.fish # Many and varied git shortcuts
+source ~/.config/fish/infra.fish # Docker, terraform, Kubernetes stuff
 source ~/.config/fish/misc.fish # Misc
 
 # Private work stuff
