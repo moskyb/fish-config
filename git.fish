@@ -3,17 +3,14 @@ alias gclcl 'git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D' # g
 alias grc 'gaa ;and git rebase --continue'
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
 alias gbb 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' # Git Base Branch - get default branch
-alias gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
-alias gco 'git checkout'
-alias gcap 'gaa ;and git commit --amend'
-alias gaa 'git add -A'
+alias gcom 'git checkout (gbb) ;and git pull' # Checkout master and pull the latest version
+alias gnb 'gcom ;and gco -b' # git new branch
 
-abbr gnb 'gcom ;and gco -b' # git new branch
-abbr gco 'git checkout'
 abbr gcm 'git commit -m' # git commit message
 abbr gcam 'git commit -am' # git commit all message
 abbr gcaam 'gaa ;and git commit -m' # git commit really all all message
-abbr gpf 'git push --force-with-lease'
+abbr gpf 'git push --force'
+abbr gco 'git checkout'
 abbr grf 'git reflog'
 abbr gr 'git rebase'
 abbr gpu 'git pull'
@@ -23,11 +20,15 @@ abbr gd 'git diff'
 abbr gst 'git stash'
 abbr gstp 'git stash pop'
 abbr gs 'git status' # Fuck me if I ever install GhostScript, amirite?
-abbr gpo 'git push origin'
 
 # Handy for when you're Douglas Crockford
 # The worst commit ever: https://github.com/douglascrockford/JSON-js/commit/40f3377a631eaedeec877379f9cb338046cac0e0
 abbr fk 'git commit -am "for kyle"'
+
+# Handy for amending your current work onto the most recent commit.
+# Will start a rebase with your current work in a new commit with the message
+# 'for kyle', which you can then easily squash onto the second-most recent commit
+abbr glom 'git commit --amend'
 
 # Take a look at the latest commit, or the nth commit for some numeric argument n
 function peek
@@ -47,6 +48,26 @@ end
 
 function gri
   git rebase -i HEAD~$argv[1]
+end
+
+# git push origin. If you're working something with a ./spec/ directory, it'll offer to run your specs for you
+function gpo
+  if not test -d ./spec/
+    git push origin
+  else
+    if read_confirm_run_specs
+      check
+      if test $status -eq 0
+        git push origin
+      else
+        if confirm_push_anyway
+          git push origin
+        end
+      end
+    else
+      git push origin
+    end
+  end
 end
 
 # git log oneline
