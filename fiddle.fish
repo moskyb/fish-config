@@ -1,4 +1,4 @@
-alias recon 'set -e fish_user_abbreviations ;and source ~/.config/fish/config.fish' # Reload config
+alias recon 'source ~/.config/fish/config.fish' # Reload config
 abbr conf 'cd ~/.config/fish'
 
 # Pull latest config from github
