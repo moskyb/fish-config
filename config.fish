@@ -7,6 +7,7 @@ source ~/.config/fish/ruby.fish # Ruby-related stuffs
 source ~/.config/fish/git.fish # Many and varied git shortcuts
 source ~/.config/fish/infra.fish # Docker, terraform, Kubernetes stuff
 source ~/.config/fish/misc.fish # Misc
+source ~/.asdf/asdf.fish
 
 # Private work stuff
 if test -e ~/.config/carny-fish/carny.fish
@@ -58,11 +59,5 @@ function fish_title
       echo $command
     end
 end
-set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/moskyb/.nvm/versions/node/v6.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/moskyb/.nvm/versions/node/v6.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.fish
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/moskyb/.nvm/versions/node/v6.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish ]; and . /Users/moskyb/.nvm/versions/node/v6.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.fish
+set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
