@@ -1,4 +1,5 @@
-abbr cop 'be rubocop'
+abbr cop 'bundle exec rubocop'
+abbr copa 'bundle exec rubocop -a'
 abbr fs 'foreman start'
 abbr be 'bundle exec'
 abbr r 'rails'
