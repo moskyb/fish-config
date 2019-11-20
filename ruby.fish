@@ -11,10 +11,10 @@ abbr rbs 'ruby scratch.rb'
 # I guess switching to a tab that's running a guard session is too much like hard work for me
 function check
   if count $argv > /dev/null
-    dex (dis) bundle exec rspec $argv[1]
+    bundle exec rspec $argv[1]
     bundle exec rubocop $argv[1]
   else
-    dex (dis) bundle exec rspec
+    bundle exec rspec
     bundle exec rubocop
   end
 end

@@ -61,3 +61,6 @@ function fish_title
 end
 
 set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
+set -g fish_user_paths "/Users/moskyb/Library/Python/3.6/bin" $fish_user_paths
+set -g fish_user_paths "$GOPATH/bin" $fish_user_paths
+set -g fish_user_paths "/usr/local/go/bin" $fish_user_paths

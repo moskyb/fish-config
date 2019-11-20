@@ -18,6 +18,12 @@ function mkcd
   cd $argv[1]
 end
 
+function codeat
+  set curr_dir $PWD
+  carny $argv[1] && code .
+  cd $curr_dir
+end
+
 # Kill all processes listening on the given port
 function kp
   lsof -i ":$argv[1]" | grep LISTEN | awk '{print $2}' | xargs kill

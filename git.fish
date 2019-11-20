@@ -1,15 +1,16 @@
 alias gcl 'git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d' # git clean - remove all merged branches
 alias gclcl 'git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D' # git really clean - remove all branches other than master, dev, and the one we're currently on
-alias grc 'gaa ;and git rebase --continue'
+alias grc 'git add -A ;and git rebase --continue'
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
-alias gbb 'git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@"' # Git Base Branch - get default branch
-alias gcom 'git checkout (gbb) ;and git pull' # Checkout master and pull the latest version
+alias gco 'git checkout'
+alias gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
 alias gnb 'gcom ;and gco -b' # git new branch
 
 abbr gcm 'git commit -m' # git commit message
 abbr gcam 'git commit -am' # git commit all message
+abbr gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
 abbr gcaam 'gaa ;and git commit -m' # git commit really all all message
-abbr gpf 'git push --force'
+abbr gpf 'git push --force-with-lease'
 abbr gco 'git checkout'
 abbr grf 'git reflog'
 abbr gr 'git rebase'
@@ -19,6 +20,7 @@ abbr ga 'git add' # git add
 abbr gd 'git diff'
 abbr gst 'git stash'
 abbr gstp 'git stash pop'
+abbr gcap 'git commit --amend'
 abbr gs 'git status' # Fuck me if I ever install GhostScript, amirite?
 
 # Handy for when you're Douglas Crockford
