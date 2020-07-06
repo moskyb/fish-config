@@ -1,13 +1,14 @@
 # Startup stuff
-status --is-interactive; and . (rbenv init -|psub)
 rbenv rehash ^/dev/null
+source (rbenv init - | psub)
+set fish_greeting
+set PATH $PATH $GOPATH/bin
 
 source ~/.config/fish/fiddle.fish # Diddling with this file
 source ~/.config/fish/ruby.fish # Ruby-related stuffs
 source ~/.config/fish/git.fish # Many and varied git shortcuts
 source ~/.config/fish/infra.fish # Docker, terraform, Kubernetes stuff
 source ~/.config/fish/misc.fish # Misc
-source ~/.asdf/asdf.fish
 
 # Private work stuff
 if test -e ~/.config/carny-fish/carny.fish
