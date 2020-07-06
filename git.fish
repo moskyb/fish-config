@@ -21,6 +21,7 @@ abbr gd 'git diff'
 abbr gst 'git stash'
 abbr gstp 'git stash pop'
 abbr gcap 'git commit --amend'
+abbr squash 'git add -A ;and git commit --amend --no-edit'
 abbr gs 'git status' # Fuck me if I ever install GhostScript, amirite?
 
 # Handy for when you're Douglas Crockford
@@ -37,38 +38,16 @@ function peek
   git show HEAD~$argv
 end
 
-# use cURL magic to get the PR for your current branch
-# Requires that you set your github org, username and Personal Access Token as $gh_uname, $gh_org and $gh_pat respectively
-function gpr
-  echo "Just a sec..."
-  set repo (basename (git rev-parse --show-toplevel))
-  set branch (git rev-parse --abbrev-ref HEAD)
-  curl -s -u "$gh_uname:$gh_pat" "https://api.github.com/repos/$gh_org/$repo/pulls" | \
-    jq -r ".[] | select(.head.ref | startswith(\"$branch\")).html_url" | \
-    xargs open
-end
-
 function gri
   git rebase -i HEAD~$argv[1]
 end
 
 # git push origin. If you're working something with a ./spec/ directory, it'll offer to run your specs for you
 function gpo
-  if not test -d ./spec/
+  if [ (git rev-parse --abbrev-ref HEAD) != "master" ]
     git push origin
   else
-    if read_confirm_run_specs
-      check
-      if test $status -eq 0
-        git push origin
-      else
-        if confirm_push_anyway
-          git push origin
-        end
-      end
-    else
-      git push origin
-    end
+    echo "You're on the master branch, I'm guessing you don't want to push directly. If you do, type out 'git push origin'"
   end
 end
 
@@ -98,42 +77,4 @@ function gb
   else
     git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:cyan)%(refname:short)%(color:reset) | %(committerdate:relative)%(color:reset) | %(subject)' | column -s '|' -t;
   end
-end
-
-# Used in the `gpo` command
-function confirm_push_anyway
-  while true
-    read -l -p push_anyway confirm
-
-    switch $confirm
-      case Y y
-        return 0
-      case '' N n
-        return 1
-    end
-  end
-end
-
-# Used in the `gpo` command
-function push_anyway
-  echo 'Uh oh, looks like your specs failed, or you quit prematurely. Push anyway? [Y/N] '
-end
-
-# Used in the `gpo` command
-function read_confirm_run_specs
-  while true
-    read -l -p run_specs confirm
-
-    switch $confirm
-      case Y y
-        return 0
-      case '' N n
-        return 1
-    end
-  end
-end
-
-# Used in the `gpo` command
-function run_specs
-  echo 'Run specs before pushing? [Y/N] '
 end
