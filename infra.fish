@@ -16,7 +16,7 @@ function kcl
   end
   set kenv (kubectl config current-context | grep -oe '/.*' | sed 's|\/||')
   set kns (kubectl config view -o json | jq .contexts[0].context.namespace -r)
-  set krole (rg -o "arn:aws:iam::680305091011:role/.*" $KUBECONFIG)
+  set krole (rg -o "arn:aws:iam::.*:role/.*" $KUBECONFIG)
   echo -e "Currently working in the \e[34m$kenv\e[39m cluster, \e[32m$kns\e[39m namespace, \e[35m$krole\e[39m role"
 end
 
@@ -42,11 +42,11 @@ function krole
     return
   end
   if ! count $argv > /dev/null
-    rg -oN --color never "arn:aws:iam::680305091011:role/.*" $KUBECONFIG
+    rg -oN --color never "arn:aws:iam::.*:role/.*" $KUBECONFIG
     return
   end
   set kenv (kubectl config current-context | grep -oe '/.*' | sed 's|\/||')
   set role "$kenv-kubernetes-$argv[1]-role"
-  sed -E -i '' "s|(arn:aws:iam::680305091011:role\/).*|\1$role|g" $KUBECONFIG
+  sed -E -i '' "s|(arn:aws:iam::.*:role\/).*|\1$role|g" $KUBECONFIG
   echo -e "Set role to \e[35m$role\e[39m"
 end
