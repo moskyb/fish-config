@@ -3,6 +3,7 @@ alias gclcl 'git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D' # g
 alias grc 'git add -A ;and git rebase --continue'
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
 alias gco 'git checkout'
+alias main-branch "git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'"
 alias gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
 alias gnb 'gcom ;and gco -b' # git new branch
 
@@ -32,6 +33,10 @@ abbr fk 'git commit -am "for kyle"'
 # Will start a rebase with your current work in a new commit with the message
 # 'for kyle', which you can then easily squash onto the second-most recent commit
 abbr glom 'git commit --amend'
+
+function open-conflicts
+  git status --porcelain | grep 'UU' | awk '{print $2}' | tr '\n' ' ' | xargs code
+end
 
 # Take a look at the latest commit, or the nth commit for some numeric argument n
 function peek

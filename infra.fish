@@ -5,9 +5,17 @@ abbr dr 'docker run'
 abbr tf 'terraform'
 abbr kc 'kubectl'
 abbr kcf 'kubectl -n feed-tracking'
+abbr av 'aws-vault'
+abbr ave 'aws-vault exec'
+abbr avl 'aws-vault login'
 
 function klog
   kubectl get pods | grep $argv[1] | awk '{print $1}' | xargs -n 1 kubectl logs $argv[2..-1]
+end
+
+function tfe
+  echo "> aws-vault exec $argv[1]-terraform -- ./tf.sh $argv"
+  aws-vault exec "$argv[1]-terraform" -- "./tf.sh" $argv
 end
 
 function kcl

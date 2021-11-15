@@ -1,8 +1,32 @@
 # Startup stuff
-rbenv rehash ^/dev/null
-source (rbenv init - | psub)
 set fish_greeting
 set PATH $PATH $GOPATH/bin
+
+if status --is-interactive
+  complete -ec aws-vault
+
+  # switch based on seeing a `--`
+  complete -c aws-vault -n 'not __fish_aws_vault_is_commandline' -xa '(__fish_aws_vault_complete_arg)'
+  complete -c aws-vault -n '__fish_aws_vault_is_commandline' -xa '(__fish_aws_vault_complete_commandline)'
+
+  function __fish_aws_vault_is_commandline
+    string match -q -r '^--$' -- (commandline -opc)
+  end
+
+  function __fish_aws_vault_complete_arg
+    set -l parts (commandline -opc)
+    set -e parts[1]
+
+    aws-vault --completion-bash $parts
+  end
+
+  function __fish_aws_vault_complete_commandline
+    set -l parts (string split --max 1 '--' -- (commandline -pc))
+
+    complete "-C$parts[2]"
+  end
+end
+
 
 source ~/.config/fish/fiddle.fish # Diddling with this file
 source ~/.config/fish/ruby.fish # Ruby-related stuffs
@@ -61,7 +85,8 @@ function fish_title
     end
 end
 
-set -g fish_user_paths "/usr/local/opt/openssl/bin" $fish_user_paths
-set -g fish_user_paths "/Users/moskyb/Library/Python/3.6/bin" $fish_user_paths
 set -g fish_user_paths "$GOPATH/bin" $fish_user_paths
 set -g fish_user_paths "/usr/local/go/bin" $fish_user_paths
+set -g fish_user_paths "/home/ben/.local/bin" $fish_user_paths
+
+set -gx DESIGN_SYSTEM_AUTH_TOKEN wnDYTRx7FfQ56_2G6tNr

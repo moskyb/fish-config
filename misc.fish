@@ -3,6 +3,8 @@ alias dlf 'docker logs -tf --tail 50'
 alias dps 'docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias e 'nvm use 8.11.1 ;and ember' # Switch to node 8.11.1, which I use a lot, then do something ember-related
 alias ls exa
+alias cat bat
+alias fd fdfind
 
 abbr psf 'pgrep' # Find a running process
 abbr gw './gradlew'
@@ -20,9 +22,13 @@ function mkcd
   cd $argv[1]
 end
 
+function share
+  cd ~/src/sharesies/$argv[1]
+end
+
 function codeat
   set curr_dir $PWD
-  carny $argv[1] && code .
+  share $argv[1] && code .
   cd $curr_dir
 end
 
