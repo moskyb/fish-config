@@ -85,8 +85,11 @@ function fish_title
   end
 end
 
-set -g fish_user_paths "$GOPATH/bin" $fish_user_paths
-set -g fish_user_paths "/usr/local/go/bin" $fish_user_paths
-set -g fish_user_paths "/home/ben/.local/bin" $fish_user_paths
+fish_add_path "$GOPATH/bin" $fish_user_paths
+fish_add_path "/usr/local/go/bin" $fish_user_paths
+fish_add_path "$HOME/bin" $fish_user_paths
+fish_add_path "$HOME/Library/Python/3.9/bin/" $fish_user_paths
+fish_add_path "/opt/homebrew/bin" $fish_user_paths
+fish_add_path "$HOME/.local/bin"
 
 set -gx DESIGN_SYSTEM_AUTH_TOKEN wnDYTRx7FfQ56_2G6tNr
