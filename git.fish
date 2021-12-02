@@ -1,15 +1,15 @@
-alias gcl 'git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d' # git clean - remove all merged branches
-alias gclcl 'git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D' # git really clean - remove all branches other than master, dev, and the one we're currently on
+alias gcl 'git branch --merged | egrep -v "(^\*|main|dev)" | xargs git branch -d' # git clean - remove all merged branches
+alias gclcl 'git branch | egrep -v "(^\*|main|dev)" | xargs git branch -D' # git really clean - remove all branches other than main, dev, and the one we're currently on
 alias grc 'git add -A ;and git rebase --continue'
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
 alias gco 'git checkout'
 alias main-branch "git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'"
-alias gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
+alias gcom 'git checkout main ;and git pull' # Checkout main and pull the latest version
 alias gnb 'gcom ;and gco -b' # git new branch
 
 abbr gcm 'git commit -m' # git commit message
 abbr gcam 'git commit -am' # git commit all message
-abbr gcom 'git checkout master ;and git pull' # Checkout master and pull the latest version
+abbr gcom 'git checkout main ;and git pull' # Checkout main and pull the latest version
 abbr gcaam 'gaa ;and git commit -m' # git commit really all all message
 abbr gpf 'git push --force-with-lease'
 abbr gco 'git checkout'
@@ -49,10 +49,10 @@ end
 
 # git push origin. If you're working something with a ./spec/ directory, it'll offer to run your specs for you
 function gpo
-  if [ (git rev-parse --abbrev-ref HEAD) != "master" ]
+  if [ (git rev-parse --abbrev-ref HEAD) != "main" ]
     git push origin
   else
-    echo "You're on the master branch, I'm guessing you don't want to push directly. If you do, type out 'git push origin'"
+    echo "You're on the main branch, I'm guessing you don't want to push directly. If you do, type out 'git push origin'"
   end
 end
 
@@ -65,12 +65,12 @@ function glo
   end
 end
 
-# Pull master, then rebase against it
+# Pull main, then rebase against it
 function grm
   set curr_branch (git rev-parse --abbrev-ref HEAD)
   gcom
   gco $curr_branch
-  git rebase master
+  git rebase main
 end
 
 
