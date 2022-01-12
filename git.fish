@@ -1,5 +1,5 @@
-alias gcl 'git branch --merged | egrep -v "(^\*|main|dev)" | xargs git branch -d' # git clean - remove all merged branches
-alias gclcl 'git branch | egrep -v "(^\*|main|dev)" | xargs git branch -D' # git really clean - remove all branches other than main, dev, and the one we're currently on
+alias gcl 'git branch --merged | egrep -v "(^\*|main)" | xargs git branch -d' # git clean - remove all merged branches
+alias gclcl 'git branch | egrep -v "(^\*|main)" | xargs git branch -D' # git really clean - remove all branches other than main, dev, and the one we're currently on
 alias grc 'git add -A ;and git rebase --continue'
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
 alias gco 'git checkout'
