@@ -1,4 +1,5 @@
 *
+!completions
 !*.fish
 !.gitignore
 !readme.md
