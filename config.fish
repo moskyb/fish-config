@@ -1,6 +1,5 @@
 # Startup stuff
 set fish_greeting
-set PATH $PATH $GOPATH/bin
 
 source ~/.config/fish/fiddle.fish # Diddling with this file
 source ~/.config/fish/ruby.fish # Ruby-related stuffs

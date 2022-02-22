@@ -22,8 +22,12 @@ function mkcd
   cd $argv[1]
 end
 
-function share
-  cd ~/src/sharesies/$argv[1]
+function bk
+  cd ~/buildkite/$argv[1]
+end
+
+function bkbk
+  bk buildkite
 end
 
 function codeat
