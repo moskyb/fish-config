@@ -1,5 +1,6 @@
 *
-!completions
-!*.fish
+completions/**
+/!*.fish
 !.gitignore
 !readme.md
+buildkite.fish

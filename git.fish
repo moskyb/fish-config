@@ -1,18 +1,19 @@
 alias gcl 'git branch --merged | egrep -v "(^\*|main)" | xargs git branch -d' # git clean - remove all merged branches
 alias gclcl 'git branch | egrep -v "(^\*|main)" | xargs git branch -D' # git really clean - remove all branches other than main, dev, and the one we're currently on
-alias grc 'git add -A ;and git rebase --continue'
 alias gnuke 'git stash ;and git stash drop' # Get rid of any uncommitted changes, even if they're staged
-alias gco 'git checkout'
+alias gco 'git switch'
 alias main-branch "git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@'"
-alias gcom 'git checkout main ;and git pull' # Checkout main and pull the latest version
-alias gnb 'gcom ;and gco -b' # git new branch
+alias gcom 'git switch main ;and git pull' # Switch main and pull the latest version
+alias gnb 'gcom ;and git switch -c' # git new branch
 
+abbr grc 'git rebase --continue'
+abbr gra 'git rebase --abort'
 abbr gcm 'git commit -m' # git commit message
 abbr gcam 'git commit -am' # git commit all message
-abbr gcom 'git checkout main ;and git pull' # Checkout main and pull the latest version
+abbr gcom 'git switch main ;and git pull' # Switch main and pull the latest version
 abbr gcaam 'gaa ;and git commit -m' # git commit really all all message
 abbr gpf 'git push --force-with-lease'
-abbr gco 'git checkout'
+abbr gco 'git switch'
 abbr grf 'git reflog'
 abbr gr 'git rebase'
 abbr gpu 'git pull'
@@ -33,6 +34,45 @@ abbr fk 'git commit -am "for kyle"'
 # Will start a rebase with your current work in a new commit with the message
 # 'for kyle', which you can then easily squash onto the second-most recent commit
 abbr glom 'git commit --amend'
+
+function checkout-fork
+  argparse 'h/help' 'r/repo=' 'a/account=' 'b/branch=' -- $argv
+
+  # if test -n $_flag_help
+  #   echo "Usage: checkout-fork --account <fork account> [args]"
+  #   echo
+  #   echo "Checks out a fork of the repo you're currently in, adding a remote, and checking out the branch of the fork"
+  #   echo
+  #   echo "Options:"
+  #   echo "  -h/--help: Show this help text"
+  #   echo "  -a/--account: Set the account name of the fork. This must be set"
+  #   echo "  -r/--repo: Set the repository name of the fork. Defaults to the name of repository this command is called from"
+  #   echo "  -b/--branch: Set the branch name of the fork. Defaults to 'main'"
+  #   return 0
+  # end
+
+  set repo (basename (git rev-parse --show-toplevel))
+  if test -n $_flag_repo
+    set repo $_flag_repo
+  end
+
+  if test -z $_flag_account
+    echo "Account flag is mandatory, use either --account or -a"
+    return 1
+  end
+  set fork_account $_flag_account
+
+  set fork_branch "main"
+  if test -n $_flag_branch
+    set fork_branch $_flag_branch
+  end
+
+  set fish_trace 1
+  git remote add $fork_account git@github.com:$fork_account/$repo.git; or return
+  git fetch $fork_account; or return
+  git checkout --track $fork_account/$fork_branch "$fork_account-$fork_branch"; or return
+  set fish_trace 0
+end
 
 function open-conflicts
   git status --porcelain | grep 'UU' | awk '{print $2}' | tr '\n' ' ' | xargs code

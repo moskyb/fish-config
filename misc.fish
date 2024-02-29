@@ -32,7 +32,7 @@ end
 
 function codeat
   set curr_dir $PWD
-  share $argv[1] && code .
+  bk $argv[1] && code .
   cd $curr_dir
 end
 
