@@ -2,7 +2,7 @@ alias nvm 'bass source ~/.nvm/nvm.sh --no-use ";" nvm' # Use nvm because it by d
 alias dlf 'docker logs -tf --tail 50'
 alias dps 'docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias e 'nvm use 8.11.1 ;and ember' # Switch to node 8.11.1, which I use a lot, then do something ember-related
-alias ls exa
+alias ls eza
 alias cat bat
 alias fd fdfind
 

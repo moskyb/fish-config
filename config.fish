@@ -62,3 +62,5 @@ fish_add_path "/opt/homebrew/bin" $fish_user_paths
 fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/.cargo/bin"
 kubectl completion fish | source
+zoxide init fish | source
+nodenv init - fish | source
