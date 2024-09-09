@@ -5,31 +5,12 @@ source ~/.config/fish/fiddle.fish # Diddling with this file
 source ~/.config/fish/ruby.fish # Ruby-related stuffs
 source ~/.config/fish/git.fish # Many and varied git shortcuts
 source ~/.config/fish/infra.fish # Docker, terraform, Kubernetes stuff
-source ~/.config/fish/misc.fish # Misc
 
-source ~/.config/fish/buildkite.fish # work stuff
-
-function fish_prompt
-  if [ $status = 0 ]
-    set_color green
-    if git rev-parse 2> /dev/null
-      echo -n (git rev-parse --abbrev-ref HEAD 2> /dev/null)
-    else
-      echo -n "^_^"
-    end
-  else
-    set_color red
-    if git rev-parse 2> /dev/null
-      echo -n (git rev-parse --abbrev-ref HEAD)
-    else
-      echo -n "x_x"
-    end
-  end
-  set_color normal
-  echo -n ' ('
-  echo -n (prompt_pwd)
-  echo -n ') '
+if test -e ~/.config/fish/buildkite.fish
+  source ~/.config/fish/buildkite.fish # work stuff
 end
+
+source ~/.config/fish/misc.fish # Misc
 
 function fish_title
   set -l command (echo $_)
