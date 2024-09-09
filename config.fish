@@ -6,6 +6,7 @@ source ~/.config/fish/ruby.fish # Ruby-related stuffs
 source ~/.config/fish/git.fish # Many and varied git shortcuts
 source ~/.config/fish/infra.fish # Docker, terraform, Kubernetes stuff
 source ~/.config/fish/misc.fish # Misc
+
 source ~/.config/fish/buildkite.fish # work stuff
 
 function fish_prompt
@@ -61,6 +62,5 @@ fish_add_path "$HOME/Library/Python/3.9/bin/" $fish_user_paths
 fish_add_path "/opt/homebrew/bin" $fish_user_paths
 fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/.cargo/bin"
+
 kubectl completion fish | source
-zoxide init fish | source
-nodenv init - fish | source
