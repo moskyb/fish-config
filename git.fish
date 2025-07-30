@@ -24,6 +24,7 @@ abbr gst 'git stash'
 abbr gstp 'git stash pop'
 abbr gcap 'git commit --amend'
 abbr squash 'git add -A ;and git commit --amend --no-edit'
+abbr gbr 'git branch'
 abbr gs 'git status' # Fuck me if I ever install GhostScript, amirite?
 
 # Handy for when you're Douglas Crockford
@@ -70,7 +71,7 @@ function checkout-fork
   set fish_trace 1
   git remote add $fork_account git@github.com:$fork_account/$repo.git; or return
   git fetch $fork_account; or return
-  git checkout --track $fork_account/$fork_branch "$fork_account-$fork_branch"; or return
+  git "switch" --create "$fork_account/$fork_branch" --track $fork_account/$fork_branch; or return
   set fish_trace 0
 end
 
