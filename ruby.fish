@@ -6,8 +6,6 @@ abbr rs 'bundle exec rails s'
 abbr cogem 'git checkout Gemfile Gemfile.lock' # Handy for when you're using specific gems locally that you don't want to push
 abbr rbs 'ruby scratch.rb'
 
-status --is-interactive; and rbenv init - fish | source
-
 # Run specs and rubocop in the same run. Can take a specific file as an arg
 # I guess switching to a tab that's running a guard session is too much like hard work for me
 function check
