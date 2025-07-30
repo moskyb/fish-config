@@ -6,6 +6,7 @@ alias ls eza
 alias cat bat
 alias fd fdfind
 
+abbr c "code ."
 abbr psf 'pgrep' # Find a running process
 abbr gw './gradlew'
 abbr mdg 'mix deps.get'
